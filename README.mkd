@@ -1,0 +1,24 @@
+Nagios deployment using Ansible
+===============================
+
+I host sites for friends and my projects; it's a hobby of mine. Dumping a
+bunch of files on an AWS instance and hope it never breaks is stupid, and I've
+been fighting myself against that for a long time. I've finally fixed that,
+but as a result I ended up with a bit-rotted Nagios monitoring server that did
+little more than alert me when my hosts' disk partitions started to fill up.
+Boo hoo.
+
+Over the last few days, I've re-engineered my Nagios server from the ground up
+and integrated my various application hosting templates (which i'll start open
+sourcing, little by little) with Nagios rulesets. This all is pretty standard
+fair, but setting up a single playset that I can deploy to all of my
+statically hosted HTML site playbooks, all of my jekyll sites playbooks, and
+another playset that I can add to a Rails app template, another for Django
+apps, and suddenly 95% of the things I would host are covered in Nagios as
+soon as I deploy them. That's hot.
+
+If you've not used Ansible before, I'd highly recommend giving it a look. Like
+I said, I'll be opening up the repos for my various plays and playbooks soon.
+
+It should be pretty obvious that these playbooks dont' work OOTB, rather
+they're meant to be templates and structure.
