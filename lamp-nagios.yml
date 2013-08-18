@@ -1,0 +1,14 @@
+- name: copy LAMP nrpe tasks over to host
+  action: template src=templates/lamp-nrpe.cfg dest=/etc/nrpe.d/lamp.{{site_fqdn}}.cfg
+
+- name: copy LAMP nrpe snippet to nagios host
+  action: template src=templates/lamp-nrpe-nagios-side.cfg dest=/etc/nagios/hosts/${inventory_hostname}.${site_fqdn}.cfg mode=0644
+
+# If you need to reuse these, make 'em handlers
+- name: reload nrpe
+  action: service name=nrpe state=restarted
+  delegate_to: monitor.rix.si
+
+- name: reload nagios
+  action: service name=nagios state=reloaded
+  delegate_to: nagios.myservers.com

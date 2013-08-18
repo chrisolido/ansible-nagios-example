@@ -1,0 +1,21 @@
+- name: Install our site
+  hosts: web.myservers.com
+  user: root
+
+  vars:
+    sites_root: /var/www/html
+    site_fqdn: SocialAsAServiceAsAService.com # https://socialstack.heroku.com/cloud/4f86ecaa2e740b00010010bf
+    # Use this var during install, and also in the NRPE templates
+    install_location: {{sites_root}}/{{site_fqdn}}
+    # I set this in my inventory files so that I can associate an EIP with a
+    # freshly initialized EC2 box, but you can define it here, if you want
+    eip_address: $ansible_ipv4_default['address']
+    # This is passed to the VHost check to make sure the server is
+    # rendering the right site, rather than a generic "YUP ITS HTTP 200 OK.
+    upcheck_search_string: "Ninja Rockstars"
+
+  tasks:
+  # Install our wicked cool Rails.js ninja social app which is actually
+  # writtin in PHP on top of MySQL
+
+  - include: lamp-nagios.yml
