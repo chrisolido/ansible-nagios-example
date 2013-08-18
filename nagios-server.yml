@@ -16,9 +16,6 @@
   user: ec2-user
   sudo: True
 
-  vars_files:
-  - ../vars/global.yml
-
   tasks:
   - name: Install nagios $item
     action: yum state=latest pkg=$item
@@ -50,4 +47,4 @@
   user: root
 
   tasks:
-    - include: nagios-nrpe.yaml
+    - include: nagios-nrpe.yml
