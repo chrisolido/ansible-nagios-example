@@ -17,6 +17,9 @@ another playset that I can add to a Rails app template, another for Django
 apps, and suddenly 95% of the things I would host are covered in Nagios as
 soon as I deploy them. That's hot.
 
+![Ballons](http://wstaw.org/m/2013/08/18/plasma-desktopm23795.png)
+![Tests](http://wstaw.org/m/2013/08/18/plasma-desktopV23795.png)
+
 If you've not used Ansible before, I'd highly recommend giving it a look. Like
 I said, I'll be opening up the repos for my various plays and playbooks soon.
 
