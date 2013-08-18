@@ -8,6 +8,10 @@ but as a result I ended up with a bit-rotted Nagios monitoring server that did
 little more than alert me when my hosts' disk partitions started to fill up.
 Boo hoo.
 
+I also have a dayjob wherein I should be practicing responsible systems
+administration, since, you know, I'm the only person responsible for making
+sure these things work.
+
 Over the last few days, I've re-engineered my Nagios server from the ground up
 and integrated my various application hosting templates (which i'll start open
 sourcing, little by little) with Nagios rulesets. This all is pretty standard
