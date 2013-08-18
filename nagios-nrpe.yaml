@@ -1,0 +1,19 @@
+- name: install nrpe
+  action: yum state=latest pkg=$item
+  with_items:
+  - nagios-plugins-all
+  - nrpe
+
+- name: copy over basic nrpe tasks
+  action: template src=templates/nrpe.cfg dest=/etc/nagios/nrpe.cfg
+
+- name: start nrpe
+  action: service enabled=yes state=restarted name=nrpe
+
+- name: copy over basic server tasks
+  action: template src=templates/nrpe-nagios-side.cfg dest=/etc/nagios/hosts/{{inventory_hostname}}.nrpe.cfg mode=0644
+  delegate_to: monitor.rix.si
+
+- name: reload nagios
+  action: service enabled=yes state=reloaded name=nagios
+  delegate_to: monitor.rix.si

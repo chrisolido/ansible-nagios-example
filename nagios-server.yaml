@@ -31,3 +31,10 @@
     with_items:
     - nagios
     - httpd
+
+- name: Set up base NRPE tasks for all hosts
+  hosts: all
+  user: root
+
+  tasks:
+    - include: nagios-nrpe.yaml
