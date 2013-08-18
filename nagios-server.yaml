@@ -1,0 +1,33 @@
+- name: Nagios Instance
+  hosts: nagios.myservers.com
+  user: ec2-user
+  sudo: True
+
+  vars_files:
+  - ../vars/global.yml
+
+  tasks:
+  - name: Install nagios $item
+    action: yum state=latest pkg=$item
+    with_items:
+    - nagios
+    - nagios-plugins-all
+    - nagios-devel
+
+  - name: Copy in base config
+    action: copy src=templates/nagios.cfg dest=/etc/nagios/nagios.cfg
+
+  - name: copy in object config $item
+    action: copy src=templates/$item dest=/etc/nagios/objects/$item
+    with_items:
+    - hostgroups.cfg
+    - commands.cfg
+    - contacts.cfg
+    - timeperiods.cfg
+    - templates.cfg
+
+  - name: restart $item
+    action: service name=$item state=restarted enabled=yes
+    with_items:
+    - nagios
+    - httpd
